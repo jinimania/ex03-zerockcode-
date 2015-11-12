@@ -137,6 +137,8 @@
         $.getJSON(pageInfo, function (data) {
             printData(data.list, $("#repliesDiv"), $("#template"));
             printPaging(data.pageMaker, $(".pagination"));
+
+            $("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]");
         });
     }
 

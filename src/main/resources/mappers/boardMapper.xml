@@ -162,4 +162,10 @@
         WHERE bno = #{bno}
     </update>
 
+    <update id="updateViewCnt">
+        UPDATE tbl_board
+        SET viewcnt = viewcnt + 1
+        WHERE bno = #{bno}
+    </update>
+
 </mapper>
