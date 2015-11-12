@@ -30,4 +30,6 @@ public interface BoardDAO {
     List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 
     int listSearchCount(SearchCriteria cri) throws Exception;
+
+    void updateReplyCnt(Integer bno, int amount) throws Exception;
 }

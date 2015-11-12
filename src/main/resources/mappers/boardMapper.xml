@@ -16,7 +16,8 @@
             content,
             writer,
             regdate,
-            viewcnt
+            viewcnt,
+            replycnt
         FROM
             tbl_board
         WHERE
@@ -78,7 +79,8 @@
             content,
             writer,
             regdate,
-            viewcnt
+            viewcnt,
+            replycnt
         FROM
             tbl_board
         WHERE
@@ -153,5 +155,11 @@
             </if>
         </if>
     </sql>
+
+    <update id="updateReplyCnt">
+        UPDATE tbl_board
+        SET replycnt = replycnt + #{amount}
+        WHERE bno = #{bno}
+    </update>
 
 </mapper>

@@ -21,16 +21,16 @@
                 </form>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Title</label>
-                        <input type="text" name="title" class="form-control" value="${boardVO.title}" readonly="readonly"/>
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" value="${boardVO.title}" readonly="readonly"/>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Content</label>
-                        <textarea name="content" class="form-control" rows="3" readonly="readonly">${boardVO.content}</textarea>
+                        <label for="content">Content</label>
+                        <textarea name="content" id="content" class="form-control" rows="3" readonly="readonly">${boardVO.content}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Writer</label>
-                        <input type="text" name="writer" class="form-control" value="${boardVO.writer}" readonly="readonly"/>
+                        <label for="writer">Writer</label>
+                        <input type="text" name="writer" id="writer" class="form-control" value="${boardVO.writer}" readonly="readonly"/>
                     </div>
                 </div>
                 <div class="box-footer">
@@ -49,9 +49,9 @@
                     <h3 class="box-title">ADD NEW REPLY</h3>
                 </div>
                 <div class="box-body">
-                    <label for="exampleInputEmail1">Writer</label>
+                    <label for="newReplyWriter">Writer</label>
                     <input type="text" class="form-control" placeholder="USER ID" id="newReplyWriter"/>
-                    <label for="exampleInputEmail1">Reply Text</label>
+                    <label for="newReplyText">Reply Text</label>
                     <input type="text" class="form-control" placeholder="REPLY TEXT" id="newReplyText"/>
                 </div>
                 <div class="box-footer">
@@ -62,7 +62,7 @@
             <ul class="timeline">
                 <li class="time-label" id="repliesDiv">
                     <span class="bg-green">
-                        Replies List
+                        Replies List <small id="replycntSmall">[ ${boardVO.replycnt} ]</small>
                     </span>
                 </li>
             </ul>

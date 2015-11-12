@@ -6,6 +6,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.SearchCriteria;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -74,5 +75,15 @@ public class BoardDAOImpl implements BoardDAO {
     @Override
     public int listSearchCount(final SearchCriteria cri) throws Exception {
         return session.selectOne(namespace + ".listSearchCount", cri);
+    }
+
+    @Override
+    public void updateReplyCnt(final Integer bno, final int amount) throws Exception {
+        final HashMap<String, Object> paramMap = new HashMap<>();
+
+        paramMap.put("bno", bno);
+        paramMap.put("amount", amount);
+
+        session.update(namespace + ".updateReplyCnt", paramMap);
     }
 }

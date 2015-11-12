@@ -13,6 +13,7 @@ public class BoardVO {
     private String writer;
     private Date regdate;
     private int viewcnt;
+    private int replycnt;
 
     public Integer getBno() {
         return bno;
@@ -62,6 +63,14 @@ public class BoardVO {
         this.viewcnt = viewcnt;
     }
 
+    public int getReplycnt() {
+        return replycnt;
+    }
+
+    public void setReplycnt(final int replycnt) {
+        this.replycnt = replycnt;
+    }
+
     @Override
     public String toString() {
         return "BoardVO{" +
@@ -71,6 +80,7 @@ public class BoardVO {
                 ", writer='" + writer + '\'' +
                 ", regdate=" + regdate +
                 ", viewcnt=" + viewcnt +
+                ", replycnt=" + replycnt +
                 '}';
     }
 }
