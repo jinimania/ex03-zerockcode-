@@ -168,4 +168,9 @@
         WHERE bno = #{bno}
     </update>
 
+    <insert id="addAttach">
+        INSERT INTO tbl_attach (fullName, bno)
+        VALUES (#{fullName}, LAST_INSERT_ID())
+    </insert>
+
 </mapper>
