@@ -22,8 +22,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -123,5 +121,25 @@ public class UploaderController {
             }
         }
         return entity;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteFile", method = RequestMethod.POST)
+    public ResponseEntity<String> deleteFile(String fileName) {
+
+        logger.info("delete file: " + fileName);
+
+        final String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+        final MediaType mType = MediaUtil.getMediaType(formatName);
+
+        if (mType != null) {
+            final String front = fileName.substring(0, 12);
+            final String end = fileName.substring(14);
+
+            new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+        }
+        new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
 }
