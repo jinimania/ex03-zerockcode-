@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.util.MediaUtil;
@@ -140,6 +141,31 @@ public class UploaderController {
         }
         new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteAllFiles", method = RequestMethod.POST)
+    public ResponseEntity<String> deleteFile(@RequestParam("files[]") String[] files) {
+
+        logger.info("delete file: " + files);
+
+        if (files == null || files.length == 0) {
+            return new ResponseEntity<>("deleted", HttpStatus.OK);
+        }
+
+        for (String fileName : files) {
+            final String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+            final MediaType mType = MediaUtil.getMediaType(formatName);
+
+            if (mType != null) {
+                final String front = fileName.substring(0, 12);
+                final String end = fileName.substring(14);
+
+                new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+            }
+            new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+        }
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
 }

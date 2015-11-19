@@ -96,4 +96,24 @@ public class BoardDAOImpl implements BoardDAO {
     public void addAttach(final String fullName) throws Exception {
         session.insert(namespace + ".addAttach", fullName);
     }
+
+    @Override
+    public List<String> getAttach(final Integer bno) throws Exception {
+        return session.selectList(namespace + ".getAttach", bno);
+    }
+
+    @Override
+    public void deleteAttach(final Integer bno) throws Exception {
+        session.delete(namespace + ".deleteAttach", bno);
+    }
+
+    @Override
+    public void replaceAttach(final String fullName, final Integer bno) throws Exception {
+        final HashMap<String, Object> paramMap = new HashMap<>();
+
+        paramMap.put("fullName", fullName);
+        paramMap.put("bno", bno);
+
+        session.insert(namespace + ".replaceAttach", paramMap);
+    }
 }
